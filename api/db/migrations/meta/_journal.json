@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1749069067989,
+      "tag": "0000_condemned_gwen_stacy",
+      "breakpoints": true
+    }
+  ]
+}
