@@ -1,13 +1,12 @@
-const db = require('./connection');
-const {migrate} = require('drizzle-orm/better-sqlite3/migrator');
+import  db  from './connection.js';
+import {migrate} from 'drizzle-orm/better-sqlite3/migrator';
 
-require('../models/especie');
-require('../models/especieUsuario');
-require('../models/usuario');
+import '../models/schema.js'; // Importando o schema para garantir que as tabelas estejam definidas
 
-async function runMigrations(){
-    await migrate(db, {migrationsFolder: './migrations'});
+
+function runMigrations(){
+    migrate(db, {migrationsFolder: './db/migrations'});
     console.log("create migration\n")
 }
 
-module.exports = runMigrations;
+export default runMigrations;

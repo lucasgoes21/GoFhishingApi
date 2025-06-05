@@ -1,4 +1,4 @@
-const {real, sqliteTable, integer, text} = require('drizzle-orm/sqlite-core')
+import { real, sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';
 
 export const especies = sqliteTable('especies', {
     id: integer('id').primaryKey({ autoIncrement: true}),
@@ -6,7 +6,7 @@ export const especies = sqliteTable('especies', {
     nomeCientifico: text('nomeCientifico').notNull(),
     tamanhoMedio: text('tamanhoMedio').notNull(),
     pesoMedio: text('pesoMedio').notNull(),
-    nativa: integer('nativa',{ mode: 'boolean' }).notNull(), //1 - sim 0 - nao
+    nativa: integer('nativa',{ mode: 'boolean' }).notNull(),
 });
 
 export const especieUsuario = sqliteTable('especieUsuario', {
@@ -14,7 +14,7 @@ export const especieUsuario = sqliteTable('especieUsuario', {
     idUsuario: integer('idUsuario').notNull().references(() => usuarios.id, {onDelete: 'cascade'}),
     idEspecie: integer('idEspecie').notNull().references(() => especies.id, {onDelete: 'cascade'}),
     tamanho: real('tamanho'),
-    conhecido: integer({ mode: 'boolean' }, 'conhecido') // sera q funciona? se pa
+    conhecido: integer({ mode: 'boolean' }, 'conhecido') 
 });
 
 export const usuarios = sqliteTable('usuarios', {

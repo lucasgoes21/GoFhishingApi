@@ -1,24 +1,27 @@
-const fastify = require('fastify')({logger:true});
+import Fastify from 'fastify';
+const fastify = Fastify({ logger: true });
 
-const runMigrations = require('./db/migrate');
+import  runMigrations from './db/migrate.js';
 
-async function start(){
+import routes from './routes/index.js';
 
-    try{
-        await runMigrations();
+async function start() {
+  try {
+    if (runMigrations) await runMigrations();
 
-        fastify.get('/', async (requestAnimationFrame, reply) => { 
-            return{status: 'Servidor On'};
-        });
-        
-        await fastify.listen({port: 3000});
-        
-        console.log("On na porta http://localhost:3000")
-    }
-    catch(err){
-        console.log("erro")
-        console.error(err)
-        process.exit(1)
-    }
+    fastify.get('/', async (request, reply) => {
+      return { status: 'Servidor On' };
+    });
+
+    await routes(fastify);
+
+    await fastify.listen({ port: 3000 });
+
+    console.log('Servidor rodando em http://localhost:3000');
+  } catch (err) {
+    console.error('Erro ao iniciar o servidor:', err);
+    process.exit(1);
+  }
 }
-start()
+
+start();
