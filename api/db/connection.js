@@ -5,4 +5,4 @@ const sqlite = new Database('./goFishing.db')
 
 const db = drizzle(sqlite)
 
-module.exports = db
+export default db

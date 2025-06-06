@@ -1,0 +1,52 @@
+### teste
+GET  http://localhost:3000/
+Content-Type: application/json
+###
+
+### Criar usuário
+POST http://localhost:3000/auth/cadastro
+Content-Type: application/json
+
+{
+  "nome": "joao",
+  "senha": "1234"
+}
+
+###
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "nome": "joao",
+  "senha": "1234"
+}
+
+###
+
+### Registrar peixe como visto
+POST http://localhost:3000/peixe/viuPeixe
+Content-Type: application/json
+
+{
+  "userID": 1,
+  "peixeID": 3,
+}
+
+###
+
+### Registrar peixe como capturado
+POST http://localhost:3000/peixe/pegouPeixe
+Content-Type: application/json
+
+{
+  "userID": 1,
+  "peixeID": 2,
+  "tamanho": 23.5
+}
+
+###
+
+### Consultar Peixedex do usuário
+GET http://localhost:3000/peixe/peixedex/1
