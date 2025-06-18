@@ -62,7 +62,7 @@ export async function listarPeixedex(userID) {
     const visto = vistos.find(v => v.idEspecie === especie.id);
     return {
       ...especie,
-      conhecido: visto?.conhecido === 1,
+      conhecido: visto?.conhecido == 1,
       tamanho: visto?.tamanho || null,
       capturado: visto?.tamanho != null,
     };

@@ -14,7 +14,10 @@ const dados = [
     pesoMedio: "até 50 kg",
     alimentacao: "Carnívoro",
     periodoOcorrencia: "dezembro a março",
-    nativa: "Sim"
+    nativa: "Sim",
+    tamanhoMinimo: 0.7,
+    tamanhoMaximo: 1.4,
+    icone: "jau"
   },
   {
     nome: "Piracanjuba",
@@ -23,7 +26,10 @@ const dados = [
     pesoMedio: "até 6 kg",
     alimentacao: "Onívoro",
     periodoOcorrencia: "setembro a janeiro",
-    nativa: "Sim"
+    nativa: "Sim",
+    tamanhoMinimo: 0.35,
+    tamanhoMaximo: 0.7,
+    icone: "piracanjuba"
   },
   {
     nome: "Dourado",
@@ -32,7 +38,10 @@ const dados = [
     pesoMedio: "2 a 10 kg",
     alimentacao: "Carnívoro",
     periodoOcorrencia: "fevereiro a outubro",
-    nativa: "Sim"
+    nativa: "Sim",
+    tamanhoMinimo: 0.5,
+    tamanhoMaximo: 1.0,
+    icone: "dourado"
   },
   {
     nome: "Tilápia do Nilo",
@@ -41,7 +50,10 @@ const dados = [
     pesoMedio: "até 1 kg",
     alimentacao: "Onívoro",
     periodoOcorrencia: "todo o ano",
-    nativa: "Não"
+    nativa: "Não",
+    tamanhoMinimo: 0.15,
+    tamanhoMaximo: 0.3,
+    icone: "tilapia"
   },
   {
     nome: "Bagre africano",
@@ -50,7 +62,10 @@ const dados = [
     pesoMedio: "60 kg",
     alimentacao: "Onívoro",
     periodoOcorrencia: "setembro a janeiro",
-    nativa: "Não"
+    nativa: "Não",
+    tamanhoMinimo: 0.75,
+    tamanhoMaximo: 1.5,
+    icone: "bagre"
   },
   {
     nome: "Sardinha-de-água-doce",
@@ -59,7 +74,10 @@ const dados = [
     pesoMedio: "10-30g",
     alimentacao: "Onívoro",
     periodoOcorrencia: "maio a outubro",
-    nativa: "Não"
+    nativa: "Não",
+    tamanhoMinimo: 0.1,
+    tamanhoMaximo: 0.2,
+    icone: "sardinha"
   },
   {
     nome: "Surubim",
@@ -68,7 +86,10 @@ const dados = [
     pesoMedio: "até 100 kg",
     alimentacao: "Carnívoro",
     periodoOcorrencia: "setembro a março",
-    nativa: "Sim"
+    nativa: "Sim",
+    tamanhoMinimo: 0.8,
+    tamanhoMaximo: 1.9,
+    icone: "surubim"
   },
   {
     nome: "Traíra",
@@ -77,7 +98,10 @@ const dados = [
     pesoMedio: "50 a 390 g",
     alimentacao: "Carnívoro",
     periodoOcorrencia: "setembro a fevereiro",
-    nativa: "Sim"
+    nativa: "Sim",
+    tamanhoMinimo: 0.3,
+    tamanhoMaximo: 0.6,
+    icone: "traira"
   },
   {
     nome: "Tucunaré amarelo",
@@ -86,7 +110,10 @@ const dados = [
     pesoMedio: "até 14 kg",
     alimentacao: "Carnívoro",
     periodoOcorrencia: "dezembro a maio",
-    nativa: "Não"
+    nativa: "Não",
+    tamanhoMinimo: 0.5,
+    tamanhoMaximo: 1.0,
+    icone: "tucunare_amarelo"
   },
   {
     nome: "Tucunaré azul",
@@ -95,7 +122,10 @@ const dados = [
     pesoMedio: "6 a 8 kg",
     alimentacao: "Carnívoro",
     periodoOcorrencia: "maio e setembro",
-    nativa: "Não"
+    nativa: "Não",
+    tamanhoMinimo: 0.25,
+    tamanhoMaximo: 0.50,
+    icone: "tucunare_azul"
   },
   {
     nome: "Lambari",
@@ -104,7 +134,10 @@ const dados = [
     pesoMedio: "20 a 50 gramas",
     alimentacao: "Onívoro",
     periodoOcorrencia: "dezembro a março",
-    nativa: "Sim"
+    nativa: "Sim",
+    tamanhoMinimo: 0.07,
+    tamanhoMaximo: 0.15,
+    icone: "lambari"
   },
   {
     nome: "Pacu",
@@ -113,7 +146,10 @@ const dados = [
     pesoMedio: "até 20 kg",
     alimentacao: "Onívoro",
     periodoOcorrencia: "Todo o ano",
-    nativa: "Sim"
+    nativa: "Sim",
+    tamanhoMinimo: 0.25,
+    tamanhoMaximo: 0.5,
+    icone: "pacu"
   }
 ];
 

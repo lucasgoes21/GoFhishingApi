@@ -9,6 +9,7 @@ import { registrarCaptura, marcarComoVisto, listarPeixedex} from '../controllers
   
     fastify.post('/viuPeixe', async (request, reply) => {
       const { userID, peixeID } = request.body;
+      console.log("asdasdasdasdasdasdasdasdasdasdasda\n\n",userID, peixeID);
       const resultado = await marcarComoVisto(userID, peixeID);
       reply.send(resultado);
     });

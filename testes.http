@@ -20,7 +20,7 @@ Content-Type: application/json
 
 {
   "nome": "joao",
-  "senha": "1234"
+  "senha": "123a4"
 }
 
 ###
@@ -31,7 +31,7 @@ Content-Type: application/json
 
 {
   "userID": 1,
-  "peixeID": 3,
+  "peixeID": 5
 }
 
 ###
@@ -42,11 +42,28 @@ Content-Type: application/json
 
 {
   "userID": 1,
-  "peixeID": 2,
+  "peixeID": 1,
   "tamanho": 23.5
 }
 
 ###
 
 ### Consultar Peixedex do usuário
-GET http://localhost:3000/peixe/peixedex/1
+GET http://localhost:3000/peixe/peixedex/2
+
+### registrar item enconrado
+POST http://localhost:3000/item/adicionarIteminventario
+Content-Type: application/json
+
+{
+  "userID": 1,
+  "itemID": 1,
+  "quantidade": 2
+}
+
+###
+
+### Listar itens do usuário
+GET http://localhost:3000/item/inventario/1
+
+###
