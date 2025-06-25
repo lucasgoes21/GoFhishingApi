@@ -1,8 +1,9 @@
 import Database from 'better-sqlite3';
-import {drizzle} from 'drizzle-orm/better-sqlite3';
-import {especies} from "../models/schema.js";
+import { drizzle } from 'drizzle-orm/better-sqlite3';
+import { eq } from 'drizzle-orm';
+import { especies } from "../models/schema.js";
 
-const sqlite = new Database('../goFishing.db')
+const sqlite = new Database('./goFishing.db')
 
 const db = drizzle(sqlite)
 
@@ -12,9 +13,7 @@ const dados = [
     nomeCientifico: "Zungaro zungaro",
     tamanhoMedio: "Até 1,4 metros",
     pesoMedio: "até 50 kg",
-    alimentacao: "Carnívoro",
-    periodoOcorrencia: "dezembro a março",
-    nativa: "Sim",
+    nativa: true,
     tamanhoMinimo: 0.7,
     tamanhoMaximo: 1.4,
     icone: "jau"
@@ -24,9 +23,7 @@ const dados = [
     nomeCientifico: "Brycon orbignyanus",
     tamanhoMedio: "Até 70 cm",
     pesoMedio: "até 6 kg",
-    alimentacao: "Onívoro",
-    periodoOcorrencia: "setembro a janeiro",
-    nativa: "Sim",
+    nativa: true,
     tamanhoMinimo: 0.35,
     tamanhoMaximo: 0.7,
     icone: "piracanjuba"
@@ -36,9 +33,7 @@ const dados = [
     nomeCientifico: "Salminus brasiliensis",
     tamanhoMedio: "Até 1 metro",
     pesoMedio: "2 a 10 kg",
-    alimentacao: "Carnívoro",
-    periodoOcorrencia: "fevereiro a outubro",
-    nativa: "Sim",
+    nativa: true,
     tamanhoMinimo: 0.5,
     tamanhoMaximo: 1.0,
     icone: "dourado"
@@ -48,9 +43,7 @@ const dados = [
     nomeCientifico: "Oreochromis niloticus",
     tamanhoMedio: "20 a 30 cm",
     pesoMedio: "até 1 kg",
-    alimentacao: "Onívoro",
-    periodoOcorrencia: "todo o ano",
-    nativa: "Não",
+    nativa: false,
     tamanhoMinimo: 0.15,
     tamanhoMaximo: 0.3,
     icone: "tilapia"
@@ -60,9 +53,7 @@ const dados = [
     nomeCientifico: "Clarias gariepinus",
     tamanhoMedio: "1 a 1,5 m",
     pesoMedio: "60 kg",
-    alimentacao: "Onívoro",
-    periodoOcorrencia: "setembro a janeiro",
-    nativa: "Não",
+    nativa: false,
     tamanhoMinimo: 0.75,
     tamanhoMaximo: 1.5,
     icone: "bagre"
@@ -72,9 +63,7 @@ const dados = [
     nomeCientifico: "Triportheus signatus",
     tamanhoMedio: "10-20 cm",
     pesoMedio: "10-30g",
-    alimentacao: "Onívoro",
-    periodoOcorrencia: "maio a outubro",
-    nativa: "Não",
+    nativa: false,
     tamanhoMinimo: 0.1,
     tamanhoMaximo: 0.2,
     icone: "sardinha"
@@ -84,9 +73,7 @@ const dados = [
     nomeCientifico: "Pseudoplatystoma corruscans",
     tamanhoMedio: "Até 1,90 m",
     pesoMedio: "até 100 kg",
-    alimentacao: "Carnívoro",
-    periodoOcorrencia: "setembro a março",
-    nativa: "Sim",
+    nativa: true,
     tamanhoMinimo: 0.8,
     tamanhoMaximo: 1.9,
     icone: "surubim"
@@ -96,9 +83,7 @@ const dados = [
     nomeCientifico: "Hoplias malabaricus",
     tamanhoMedio: "até 60 cm",
     pesoMedio: "50 a 390 g",
-    alimentacao: "Carnívoro",
-    periodoOcorrencia: "setembro a fevereiro",
-    nativa: "Sim",
+    nativa: true,
     tamanhoMinimo: 0.3,
     tamanhoMaximo: 0.6,
     icone: "traira"
@@ -108,9 +93,7 @@ const dados = [
     nomeCientifico: "Cichla monoculus",
     tamanhoMedio: "cerca de 1 metro",
     pesoMedio: "até 14 kg",
-    alimentacao: "Carnívoro",
-    periodoOcorrencia: "dezembro a maio",
-    nativa: "Não",
+    nativa: false,
     tamanhoMinimo: 0.5,
     tamanhoMaximo: 1.0,
     icone: "tucunare_amarelo"
@@ -120,9 +103,7 @@ const dados = [
     nomeCientifico: "Cichla piquiti",
     tamanhoMedio: "30 a 50 cm",
     pesoMedio: "6 a 8 kg",
-    alimentacao: "Carnívoro",
-    periodoOcorrencia: "maio e setembro",
-    nativa: "Não",
+    nativa: false,
     tamanhoMinimo: 0.25,
     tamanhoMaximo: 0.50,
     icone: "tucunare_azul"
@@ -132,9 +113,7 @@ const dados = [
     nomeCientifico: "Astyanax",
     tamanhoMedio: "10 a 15 cm",
     pesoMedio: "20 a 50 gramas",
-    alimentacao: "Onívoro",
-    periodoOcorrencia: "dezembro a março",
-    nativa: "Sim",
+    nativa: true,
     tamanhoMinimo: 0.07,
     tamanhoMaximo: 0.15,
     icone: "lambari"
@@ -144,9 +123,7 @@ const dados = [
     nomeCientifico: "Piaractus mesopotamicus",
     tamanhoMedio: "50 cm",
     pesoMedio: "até 20 kg",
-    alimentacao: "Onívoro",
-    periodoOcorrencia: "Todo o ano",
-    nativa: "Sim",
+    nativa: true,
     tamanhoMinimo: 0.25,
     tamanhoMaximo: 0.5,
     icone: "pacu"
@@ -155,10 +132,35 @@ const dados = [
 
 async function inserirEspecies() {
   try {
-    await db.insert(especies).values(dados);
-    console.log("Espécies inseridas com sucesso!");
+    for (const especie of dados) {
+      // Verifica se já existe pelo nome científico
+      const existente = await db.select().from(especies).where(eq(especies.nomeCientifico, especie.nomeCientifico)).get();
+
+      if (!existente) {
+        // Insere se não existe
+        await db.insert(especies).values(especie).run();
+        console.log(`Espécie inserida: ${especie.nome}`);
+      } else {
+        // Atualiza se houver diferença em algum campo
+        let precisaAtualizar = false;
+        for (const key in especie) {
+          if (especie[key] !== existente[key]) {
+            precisaAtualizar = true;
+            break;
+          }
+        }
+        if (precisaAtualizar) {
+          await db.update(especies)
+            .set(especie)
+            .where(eq(especies.nomeCientifico, especie.nomeCientifico))
+            .run();
+          console.log(`Espécie atualizada: ${especie.nome}`);
+        }
+      }
+    }
+    console.log("Processo de inserção/atualização concluído!");
   } catch (err) {
-    console.error("Erro ao inserir espécies:", err);
+    console.error("Erro ao inserir/atualizar espécies:", err);
   }
 }
 

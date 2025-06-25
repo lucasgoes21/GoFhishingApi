@@ -1,4 +1,4 @@
-import {adicionarItemInventario, listarInventario} from '../controllers/itemController.js';
+import { adicionarItemInventario, listarInventario } from '../controllers/itemController.js';
 
 export default async function itemRoutes(fastify, opts) {
   fastify.post('/adicionarIteminventario', async (request, reply) => {
@@ -12,4 +12,5 @@ export default async function itemRoutes(fastify, opts) {
     const resultado = await listarInventario(Number(userID));
     reply.send(resultado);
   });
+
 }
